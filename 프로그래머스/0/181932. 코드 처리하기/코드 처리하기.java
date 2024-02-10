@@ -1,35 +1,18 @@
 class Solution {
     public String solution(String code) {
-        String ret = "";
+        StringBuilder answer = new StringBuilder();
         int mode = 0;
-        char[] codeArray = code.toCharArray();
-        
-        for(int idx = 0; idx < codeArray.length; idx++) {
-            if(mode == 0) {
-                switch (codeArray[idx]) {
-                    case '1' :  mode = 1; break;
-                    default: {
-                        if(idx % 2 == 0){
-                            ret += codeArray[idx];
-                        }
-                        break;
-                    }
-                }
-            } else {
-                switch (codeArray[idx]) {
-                    case '1' : mode = 0; break;
-                    default : {
-                        if(idx % 2 == 1) {
-                            ret += codeArray[idx];
-                        }
-                        break;
-                    }
-                }
+        for (int i = 0; i < code.length(); i++) {
+            char current = code.charAt(i);
+            if (current == '1') {
+                mode = mode == 0 ? 1 : 0;
+                continue;
+            }
+
+            if (i % 2 == mode) {
+                answer.append(current);
             }
         }
-        if(ret == "") {
-            return "EMPTY";
-        }
-        return ret;
+        return answer.length() == 0 ? "EMPTY" : answer.toString();
     }
 }
