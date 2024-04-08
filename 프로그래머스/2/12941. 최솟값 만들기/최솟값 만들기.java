@@ -8,8 +8,7 @@ class Solution {
         Arrays.sort(B);
         
         for(int i = 0; i < A.length; i++) {
-            answer += A[i]*B[j];
-            j--;
+            answer += A[i]*B[j--];
         }
         return answer;
     }
